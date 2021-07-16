@@ -1,0 +1,18 @@
+<main>
+  <div class="form">
+    <%= form_with model: post, local:true do |f| %>
+    
+      <div class="form-group">
+      <h4>Text</h4>
+        <%= f.text_area :body,class: "form-control post_body",id:"post_body" %>
+      </div>
+      <div class="form-group">
+      <h4>Image</h4>
+        <%= f.attachment_field :image %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Create Book',class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</main>
