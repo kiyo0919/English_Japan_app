@@ -1,2 +1,24 @@
 <main>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'layouts/userinfo', post: @post %>
+      </div>
+      
+      <div class="col-md-8 offset-md-1">
+        <h1><%= @user.name %>'s page</h1>
+          <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg", size:'80x80'%><br>
+          <%= @user.name %><br>
+          
+        <% @posts.each do |post| %>
+          <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'50x50'%><br>
+          <%= post.user.name %><br>
+          <%= link_to post_path(post) do %>
+            <%= post.body %><br>
+          <% end %>
+            <%= attachment_image_tag post, :image, :fill, 200, 150, format: 'jpeg' %><br>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </main>
