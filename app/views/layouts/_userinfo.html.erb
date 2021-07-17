@@ -1,7 +1,7 @@
 <main>
   <div class="form">
     <%= form_with model: post, local:true do |f| %>
-    
+<%= render 'layouts/error_messages', model: post %>
       <div class="form-group">
       <h4>Text</h4>
         <%= f.text_area :body,class: "form-control post_body",id:"post_body" %>
