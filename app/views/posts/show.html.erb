@@ -9,7 +9,10 @@
         <%= @post.body %><br>
         <%= attachment_image_tag @post, :image, :fill, 200, 150, format: 'jpeg' %><br>
         <% if @user == current_user %>
-          <%= link_to "Delete", post_path(@post), method: :delete,'data-confirm' => "本当に消しますか？", class: "btn btn-sm btn-danger" %>
+          <%= link_to "Edit", edit_post_path(@post), class: "btn btn-sm btn-primary" %>
+        <% end %>
+        <% if @user == current_user %>
+          <%= link_to "Delete", post_path(@post), method: :delete,'data-confirm' => "Are you sure?", class: "btn btn-sm btn-danger" %>
         <% end %>
       </div>
     </div>
