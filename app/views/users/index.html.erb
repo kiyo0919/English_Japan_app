@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <%= render 'layouts/userinfo', post: @post %>
+        <%= render 'layouts/userinfo', post: @post, user: @user %>
       </div>
       
-      <div class="col-md-8 offset-md-1">
+      <div class="col-md-8 offset-md-1 mt-5">
         <h1>Users</h1>
         <table class="table table-hover table-inverse">
           <thead>
@@ -18,7 +18,7 @@
           <tbody>
             <% @users.each do |user| %>
               <tr>
-                <td><%=%></td>
+                <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'50x50' %></td>
                 <td><%= user.name %></td>
                 <td><%= link_to "Show", user_path(user) %></td>
               </tr>

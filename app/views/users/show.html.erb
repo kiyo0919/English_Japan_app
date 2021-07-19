@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <%= render 'layouts/userinfo', post: @post %>
+        <%= render 'layouts/userinfo', post: @post, user: current_user %>
       </div>
       
-      <div class="col-md-8 offset-md-1">
+      <div class="col-md-8 offset-md-1 mt-5">
         <h1><%= @user.name %>'s page</h1>
           <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg", size:'80x80'%><br>
           <%= @user.name %><br>

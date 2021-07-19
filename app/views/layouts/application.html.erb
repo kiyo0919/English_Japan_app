@@ -66,7 +66,9 @@
          <% end %>
       </nav>
     </header>
-    
+    <% flash.each do |key, value| %>
+      <%= content_tag(:p, value, class: key) %>
+    <% end %>
     
     <%= yield %>
   </body>
