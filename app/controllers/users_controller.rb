@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @post = Post.new
+    @user = crrent_user
   end
   
   def show
