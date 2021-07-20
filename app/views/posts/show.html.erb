@@ -14,6 +14,23 @@
         <% if @user == current_user %>
           <%= link_to "Delete", post_path(@post), method: :delete,'data-confirm' => "Are you sure?", class: "btn btn-sm btn-danger mt-3" %>
         <% end %>
+        <div class="comment">
+          <p><%= @post.post_comments.count %><i class="fas fa-comment-dots"></i></p>
+          <% @post.post_comments.each do |post_comment| %>
+            <%= attachment_image_tag post_comment.user, :profile_image, :fill, 50,50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50'%><br>
+            <%= post_comment.user.name %>
+            <%= post_comment.comment %> <%= post_comment.created_at.strftime('%Y/%m/%d') %> 
+            <% if post_comment.user == current_user %>
+              <%= link_to "Destroy", post_post_comment_path(post_comment.post, post_comment), method: :delete, 'data-confirm' => "Are you sure?", class: "btn btn-sm btn-danger" %><br>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="mew_comment-form">
+          <%= form_with( model:[@post, @post_comment], local:true) do |f| %>
+            <%= f.text_area :comment,placeholder: 'Enter here' %>
+            <%= f.submit "Submit" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

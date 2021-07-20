@@ -1,10 +1,9 @@
 <main>
   <div class="user-info mt-5">
               <h2>User info</h2>
-              <p><%= attachment_image_tag user, :profile_image, :fill, 90,90, format: 'jpeg', fallback: "no_image.jpg" %></p>
-                <table class="table">
+              <p><%= attachment_image_tag user, :profile_image, :fill, 90,90, format: 'jpeg', fallback: "no_image.jpg", size: '90x90' %></p>
+                <table class="table">>
                   <tbody>
-                    <tr></tr>
                     <tr>
                       <td><strong>name</strong></td>
                       <td><strong><%= user.name %></strong></td>
