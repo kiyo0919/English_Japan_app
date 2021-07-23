@@ -5,29 +5,44 @@
         <%= render 'layouts/userinfo', post: @post, user: @user %>
       </div>
       <div class="col-md-8 offset-md-1 mt-5">
+        <table>
           <% @posts.each do |post| %>
-            <%= link_to post.user.name, user_path(post.user) %><br>
-            <%= link_to post_path(post) do %>
-              <%= post.body %><br>
-              <%= attachment_image_tag post, :image, :fill, 200, 150, format: 'jpeg' %><br>
-            <% end %>
-            <ul class="d-flex">
-            <li class="ml-2">
-              <% if post.favorited_by?(current_user) %>
-              <%= link_to post_favorites_path(post), method: :delete do %>
-                 <span class="text-danger"><i class="fas fa-heart"></i> <%= post.favorites.count %></span>
-              <% end %>
-            <% else %>
-              <%= link_to post_favorites_path(post), method: :post do %>
-                 <span class="text-primary"><i class="fas fa-heart"></i> <%= post.favorites.count %></span>
-              <% end %>
-            <% end %>
-            </li>
-            <li class="ml-2">
-              <i class="fas fa-comment-dots"></i><%= post.post_comments.count %>
-            </li>
-          </ul>
+            <tr>
+              <td>
+                <%= attachment_image_tag post.user, :profile_image, :fill, 50,50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "user-icon" %>
+                <%= link_to post.user.name, user_path(post.user) %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to post_path(post) do %>
+                  <%= post.body %><br>
+                  <%= attachment_image_tag post, :image, :fill, 200, 150, format: 'jpeg' %><br>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <ul class="d-flex">
+                <li class="ml-2">
+                  <% if post.favorited_by?(current_user) %>
+                    <%= link_to post_favorites_path(post), method: :delete do %>
+                       <span class="text-danger"><i class="fas fa-heart"></i> <%= post.favorites.count %></span>
+                    <% end %>
+                  <% else %>
+                      <%= link_to post_favorites_path(post), method: :post do %>
+                        <span class="text-primary"><i class="fas fa-heart"></i> <%= post.favorites.count %></span>
+                      <% end %>
+                  <% end %>
+                </li>
+                <li class="ml-2">
+                  <i class="fas fa-comment-dots"></i><%= post.post_comments.count %>
+                </li>
+                </ul>
+              </td>
+            </tr>
           <% end %>
+        </table>
       </div>
     </div>
   </div>
