@@ -19,7 +19,8 @@ class PostsController < ApplicationController
       flash[:notice] = "Post was successfully posted."
       redirect_to post_path(@post)
     else
-      @posts = Post.all
+      @posts = Post.all.order(created_at: :desc)
+      @user = current_user
       render :index
     end
   end

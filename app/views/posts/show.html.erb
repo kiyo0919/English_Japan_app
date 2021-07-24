@@ -7,7 +7,7 @@
       <div class="col-md-8 offset-md-1 mt-4">
         <%= attachment_image_tag @post.user, :profile_image, :fill, 50,50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "user-icon" %>
         <%= link_to @post.user.name, user_path(@post.user) %><br>
-        <%= @post.user.introduction %><br
+        <%= @post.user.introduction %><br>
         <%= @post.body %><br>
         <%= attachment_image_tag @post, :image, :fill, 200, 150, format: 'jpeg' %><br>
         <% if @user == current_user %>
