@@ -13,14 +13,20 @@
               <th>Image</th>
               <th>Name</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <% @users.each do |user| %>
               <tr>
-                <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'50x50' %></td>
+                <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'50x50', class: "user-icon" %></td>
                 <td><%= user.name %></td>
                 <td><%= link_to "Show", user_path(user) %></td>
+                <td>
+                   <% if current_user.admin? %>
+                    <%= link_to "delete",users_hide_path(user), method: :put, data: { confirm: "You sure?" } %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>
