@@ -6,7 +6,12 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get :following, :followers
+    end
+  end
   put "/users/:id/hide" => "users#hide", as: 'users_hide'
+  resources :relationships, only: [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
