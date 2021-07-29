@@ -43,6 +43,16 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
+  def search
+    if params[:name].present?
+      @user = current_user
+      @post = Post.new
+      @users = User.where( 'name LIKE ?', "%#{params[:name]}%" )
+    else
+      redirect_to users_path
+    end
+  end
+  
   
   def hide
     @user = User.find(params[:id])

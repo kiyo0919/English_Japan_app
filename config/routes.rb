@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    collection do
+      get :search
+    end
   end
   put "/users/:id/hide" => "users#hide", as: 'users_hide'
   resources :relationships, only: [:create, :destroy]
