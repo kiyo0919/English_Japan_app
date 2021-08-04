@@ -4,7 +4,6 @@ class PostsController < ApplicationController
     @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc)
     @user = current_user
     @word = Word.new
-    @words = Word.all
   end
   
   def show
@@ -21,7 +20,7 @@ class PostsController < ApplicationController
       flash[:notice] = "Post was successfully posted."
       redirect_to post_path(@post)
     else
-      @posts = Post.all.order(created_at: :desc)
+      @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc)
       @user = current_user
       render :index
     end
