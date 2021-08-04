@@ -14,7 +14,9 @@ Rails.application.routes.draw do
       get :search
     end
   end
+   resources :relationships, only: [:create, :destroy]
+   resources :words, only: [:create, :destroy]
   put "/users/:id/hide" => "users#hide", as: 'users_hide'
-  resources :relationships, only: [:create, :destroy]
+ 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
