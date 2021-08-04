@@ -3,7 +3,6 @@ class PostsController < ApplicationController
     @post = Post.new
     @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc)
     @user = current_user
-    @word = Word.new
   end
   
   def show

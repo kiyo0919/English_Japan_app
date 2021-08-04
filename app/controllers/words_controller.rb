@@ -18,6 +18,11 @@ class WordsController < ApplicationController
     end
   end
   
+  def search
+    @words = Word.search(params[:keyword])
+    @user = current_user
+  end
+  
   
   private
   

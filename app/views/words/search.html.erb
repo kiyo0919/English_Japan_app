@@ -48,10 +48,6 @@
     <div class="col-md-8 offset-md-1 mt-5">
       <main>
         <h2>Word list</h2>
-        <%= form_with url: search_words_path, method: :get, local: true do |f| %>
-          <%= f.text_field :keyword %>
-          <%= f.submit "Search" %>
-        <% end %>
         <div class="word-list">
             <table class="table">
               <thead>
