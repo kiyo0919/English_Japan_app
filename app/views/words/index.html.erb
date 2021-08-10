@@ -23,12 +23,9 @@
             <div class="form-group row">
               <h5 class="col-md-2">Japanese</h5>
               <div class="col-md-10">
-                <%= f.text_field :japanese %>
+                <%= f.text_field :japanese %><span class="ml-3"><%= f.submit 'Create', class: "btn btn-primary btn-sm"%></span>
               </div>
             </div>
-              <div>
-              <%= f.submit 'Create', class: "btn btn-primary btn-sm"%>
-              </div>
           <% end %>
         </form>
         <div class="word-list mt-5">
