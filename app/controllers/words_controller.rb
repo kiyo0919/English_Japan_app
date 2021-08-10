@@ -1,6 +1,7 @@
 class WordsController < ApplicationController
   
   def index
+    @post = Post.new
     @word = Word.new
     @user = current_user
     @words = Word.all

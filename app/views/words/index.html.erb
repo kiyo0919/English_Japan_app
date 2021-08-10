@@ -1,48 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <div class="user-info mt-5">
-        <h2>User info</h2>
-        <p><%= attachment_image_tag @user, :profile_image, :fill, 90,90, format: 'jpeg', fallback: "no_image.jpg", size: '90x90', class: "user-icon" %></p>
-        <table class="table">
-          <tbody>
-            <tr>
-              <td><strong>name</strong></td>
-              <td><strong><%= @user.name %></strong></td>
-            </tr>
-            <tr>
-              <td><strong>introduction</strong></td>
-              <td><strong><%= @user.introduction %></strong></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="m-2 0">
-          <%= link_to following_user_path(@user) do %>
-            <span><strong><%= @user.following.count %></strong> following</span>
-          <% end %>
-          |
-          <%= link_to followers_user_path(@user) do %>
-          <span><strong><%= @user.followers.count %></strong> followers</span>
-          <% end %>
-        </div>
-          <%= link_to "", edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
-        </div>
-        <div class="form mt-5">
-          <h2>New word</h2>
-          <%= form_with model: @word, local:true do |f| %>
-            <div class="form-group">
-              <h5>English</h5>
-              <%= f.text_field :english, class: "form-control" %>
-            </div>
-            <div class="form-group">
-              <h5>Japanese</h5>
-              <%= f.text_field :japanese, class: "form-control" %>
-            </div>
-            <div class="form-group">
-              <%= f.submit 'Create',class: "btn btn-success" %>
-            </div>
-          <% end %>
-        </div>
+      <%= render 'layouts/userinfo', post: @post, user: @user %>
     </div>
     
     <div class="col-md-8 offset-md-1 mt-5">
@@ -52,6 +11,26 @@
           <%= f.text_field :keyword %>
           <%= f.submit "Search" %>
         <% end %>
+        <form class=mt-3>
+          <h3>New word</h3>
+          <%= form_with model: @word, local:true do |f| %>
+            <div class="form-group row">
+              <h5 class="col-md-2">English</h5>
+              <div class="col-md-10">
+                <%= f.text_field :english %>
+              </div>
+            </div>
+            <div class="form-group row">
+              <h5 class="col-md-2">Japanese</h5>
+              <div class="col-md-10">
+                <%= f.text_field :japanese %>
+              </div>
+            </div>
+              <div>
+              <%= f.submit 'Create', class: "btn btn-primary btn-sm"%>
+              </div>
+          <% end %>
+        </form>
         <div class="word-list mt-5">
             <table class="table">
               <thead>
