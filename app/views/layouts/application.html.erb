@@ -39,7 +39,7 @@
                  <%= link_to "Posts", posts_path, class: "nav-link text-end" %>
                </li>
                <li class="nav-item ml-4">
-                 <%= link_to "Words", words_path, class: "nav-link text-end" %>
+                 <%= link_to "Words", words_path, data: {"turbolinks" => false}, class: "nav-link text-end" %>
                </li>
                 <li class="nav-item ml-4">
                   <%= link_to "Logout", destroy_user_session_path, class: "nav-link text-end" %>

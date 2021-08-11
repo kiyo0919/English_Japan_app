@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
    resources :relationships, only: [:create, :destroy]
-   resources :words, only: [:index, :show, :create, :destroy] do
+   resources :words, only: [:index, :create, :destroy] do
     collection do
       get :search
     end

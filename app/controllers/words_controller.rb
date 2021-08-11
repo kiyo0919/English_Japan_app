@@ -4,19 +4,28 @@ class WordsController < ApplicationController
     @post = Post.new
     @word = Word.new
     @user = current_user
-    @words = Word.all
+    @words = Word.where(user_id: current_user.id)
   end
   
   def create
     @word = Word.new(word_params)
-    if @word.user_id = current_user.id
-      @word.save
+    @word.user_id = current_user.id
+    if @word.save
+      flash[:notice] = "Word was successfully created."
       redirect_to words_path
     else
-      @words = Word.all
+      @words = Word.where(user_id: current_user.id)
       @user = current_user
+      @post = Post.new
       render :index
     end
+  end
+  
+  def destroy
+    word = Word.find(params[:id])
+    word.destroy
+    flash[:notice] = "Word was successfully deleted."
+    redirect_to words_path
   end
   
   def search
@@ -27,7 +36,7 @@ class WordsController < ApplicationController
   
   private
   
-  def word_params
-    params.require(:word).permit(:english, :japanese)
-  end
+    def word_params
+      params.require(:word).permit(:english, :japanese)
+    end
 end
