@@ -7,7 +7,7 @@
       
       <div class="col-md-8 offset-md-1 mt-5">
         <h1><%= @user.name %>'s page</h1>
-          <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg", size:'80x80', class: "user-icon"%><br>
+          <%= attachment_image_tag @user, :profile_image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpg", size:'80x80', class: "user-icon" %><br>
           <%= @user.name %><br>
           <% unless current_user == @user %>
             <% if current_user.following?(@user) %>
@@ -17,6 +17,21 @@
             <% end %>
           <% end %>
           <%= @user.introduction %><br>
+          
+          <% unless @user.id == current_user.id %>
+            <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
+            <% if @isRoom == true %>
+              <%= link_to "チャットへ", room_path(@room), class: "btn btn-primary btn-sm" %>
+            <% else %>
+              <%= form_with model: @room, local:true do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, value: @user.id %>
+                <% end %>
+                <%= f.submit "チャットを始める", class: "btn btn-primary btn-sm user-show-chat" %>
+              <% end %>
+            <% end %>
+            <% end %>
+          <% end %>
           
         <% @posts.each do |post| %>
         <%= link_to post_path(post) do %>
