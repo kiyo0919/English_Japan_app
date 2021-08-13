@@ -19,10 +19,10 @@
       <% @messages.each do |m| %>
         <div class="chat-box">
           <div class="chat-face">
-            <%= attachment_image_tag m.user, :profile_image, :fill, 90,90, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "user-icon" %>
+            <%= attachment_image_tag m.user, :profile_image, :fill, 90,90, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "user-icon" %><%= m.user.name %>
           </div>
           <div class="chat-hukidashi"><strong><%= m.content %></strong><br>
-          <%= m.created_at.to_s(:datetame_jp) %>
+          <%= l m.created_at %>
           </div>
         </div>
       <% end %>
