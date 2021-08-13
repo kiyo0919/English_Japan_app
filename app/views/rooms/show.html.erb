@@ -1,0 +1,40 @@
+<div class="left-button">
+  <%= link_to "Back", users_path %>
+</div>
+<h4>Chat room</h4>
+<% @entries.each do |e| %>
+  <div class="user-name">
+    <strong>
+      <%= link_to user_path(e.user) do %>
+        <%= attachment_image_tag e.user, :profile_image, :fill, 90,90, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "user-icon" %>
+        <%= e.user.name %>さん
+      <% end %>
+    </strong>
+  </div>
+<% end %>
+<hr>
+<div class="chats">
+  <div class="chat">
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+        <div class="chat-box">
+          <div class="chat-face">
+            <%= attachment_image_tag m.user, :profile_image, :fill, 90,90, format: 'jpeg', fallback: "no_image.jpg", size: '50x50', class: "user-icon" %>
+          </div>
+          <div class="chat-hukidashi"><strong><%= m.content %></strong><br>
+          <%= m.created_at.to_s(:datetame_jp) %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="posts">
+    <%= form_with model: @message, local:true do |f| %>
+      <%= f.text_field :content, placeholder: "メッセージを入力してください" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.submit "Post", class: "form-submit" %>
+    <% end %>
+  </div>
+</div>
+
+  
